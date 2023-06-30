@@ -9,6 +9,7 @@ package com.bjsxt.model;
  *     单元格 可以是最基本的单元。
  *     宽度， 高度，
  *     左上角 坐标x，y
+ * @author qdw
  */
 
 public class Cell {

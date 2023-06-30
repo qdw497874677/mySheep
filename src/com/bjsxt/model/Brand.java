@@ -13,10 +13,13 @@ import java.awt.event.MouseEvent;
 import java.util.UUID;
 
 
-public class Brand extends Component{
+/**
+ * @author qdw
+ */
+public class Brand extends Component {
     // 对当前的图案进行命名  可以用来定位  图片的文件
-    private String  name;
-    private String  id;
+    private String name;
+    private String id;
     private Integer x=0;
     private Integer y=0;
     private int width=50;
@@ -24,7 +27,7 @@ public class Brand extends Component{
     private Image image;
     private Image grayImage;
     // 是否置灰
-    private Boolean isGray=false;
+    private boolean isGray = false;
     private Cell cell;
 
     public Brand() {
@@ -40,11 +43,11 @@ public class Brand extends Component{
             @Override
             public void mouseClicked(MouseEvent e) {
                 Brand brand = (Brand) e.getSource();
-                if(brand.getGray() || brand.getName().equals("消除区域") || brand.getName().equals("背景草地")){
-                    // 无操作
+                if(Boolean.TRUE.equals(brand.getGray()) || "消除区域".equals(brand.getName()) || "背景草地".equals(brand.getName())){
+                    // 灰色、消除区域、背景草地：无操作
                 }else{
-                    System.out.println(brand.getName()+"被点击啦.....");
-//                    self.getParent().remove(self);
+                    System.out.println(brand.getName() + "被点击啦.....");
+    //                    self.getParent().remove(self);
                     eliminatebox.addSlot(brand);
                     self.getCell().setState(1);
                     self.getCell().setBrand(null);
@@ -56,18 +59,17 @@ public class Brand extends Component{
         });
     }
 
-    Eliminatebox eliminatebox  =new Eliminatebox();
+    Eliminatebox eliminatebox = new Eliminatebox();
 
     @Override
     public void paint(Graphics g) {
 //        super.paint(g);
         if(isGray){
-            g.drawImage(this.getGrayImage(),x,y,null);
+            g.drawImage(this.getGrayImage(), x, y, null);
         }else{
-            g.drawImage(this.getImage(),x,y,null);
+            g.drawImage(this.getImage(), x, y, null);
         }
     }
-
 
     public Cell getCell() {
         return cell;
@@ -77,18 +79,20 @@ public class Brand extends Component{
         this.cell = cell;
     }
 
-    public Boolean getGray() {
+    public boolean getGray() {
         return isGray;
     }
 
-    public void setGray(Boolean gray) {
+    public void setGray(boolean gray) {
         isGray = gray;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

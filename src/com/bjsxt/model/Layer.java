@@ -1,36 +1,56 @@
 package com.bjsxt.model;
 
-
-/*
-    图层   游戏当中重要的数据结构
-    1   某个图层的左上角位置  是有一定的偏移量的, 偏移的数值是随机的. 这样可以形成堆叠,并且露出部分下层图案的效果.
-    2   吐过没有 一定的偏移, 那么就是完全盖住了下层的 组件.
-    3
-
-
- */
-
 import java.util.Random;
 
+/**
+ * 图层   游戏当中重要的数据结构
+ *     1   某个图层的左上角位置  是有一定的偏移量的, 偏移的数值是随机的. 这样可以形成堆叠,并且露出部分下层图案的效果.
+ *     2   吐过没有 一定的偏移, 那么就是完全盖住了下层的 组件.
+ *     3
+ */
 public class Layer {
 
-    private  Integer  offset =10;   // 偏移量
+    /**
+     * 偏移量
+     */
+    private Integer offset = 10;
 
-    private  Integer  x;        // 通过偏移量计算后的  左上角x坐标
-    private  Integer  y;        // 通过偏移量计算后的  左上角y坐标
+    /**
+     * 通过偏移量计算后的  左上角x坐标
+     */
+    private Integer x;
 
+    /**
+     * 通过偏移量计算后的  左上角y坐标
+     */
+    private Integer y;
 
-    private  Integer  cellNumx;   //  本图层中横向有多少单元格        3
-    private  Integer  cellNumy;     //  本图层中竖向有多少个单元格    2
+    /**
+     * 本图层中横向有多少单元格
+     */
+    private Integer cellNumx;
 
+    /**
+     * 本图层中竖向有多少个单元格
+     */
+    private Integer cellNumy;
 
-    private  Cell [][]   cells =null;
+    private Cell [][] cells = null;
 
-    private  Integer  capacity ;    // 容量
+    /**
+     * 容量
+     */
+    private Integer capacity;
 
-    private  Integer  size=0;   //  当前图层有多少组件    如果为0  说明当前图片没有组件, 都被消除完毕啦. 可以从map当中删除掉.、
+    /**
+     * 当前图层有多少组件   如果为0  说明当前图片没有组件, 都被消除完毕啦. 可以从map当中删除掉.
+     */
+    private Integer size = 0;
 
-    private  Layer   parentLayer;   // 上层图层
+    /**
+     * 上层图层
+     */
+    private Layer parentLayer;
 
 
     public Layer(Integer cellNumx, Integer cellNumy) {
@@ -38,7 +58,7 @@ public class Layer {
         this.cellNumy = cellNumy;
 
         this.capacity = this.cellNumx*this.cellNumy;
-        this.cells =new  Cell[cellNumx][cellNumy];
+        this.cells =new Cell[cellNumx][cellNumy];
 
         // 偏移量设置
         this.offset= new Random().nextInt(100);
@@ -113,9 +133,10 @@ public class Layer {
         this.parentLayer = parentLayer;
     }
 
-    public void  show(){
-        if(cells==null) return;
-
+    public void show(){
+        if(cells == null) {
+            return;
+        }
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 System.out.print(cells[i][j].getBrand().getName());
@@ -125,15 +146,14 @@ public class Layer {
     }
 
     public Cell getIndex(int index){
-        int  index_x= index/this.getCellNumy();
-        int  index_y= index%this.getCellNumy();
-
+        int index_x = index / this.getCellNumy();
+        int index_y = index % this.getCellNumy();
         return this.cells[index_x][index_y];
 
     }
 
 
     public Layer getParentLayer() {
-        return  this.parentLayer;
+        return this.parentLayer;
     }
 }
