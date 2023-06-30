@@ -1,9 +1,10 @@
 package test;
 
 
-import com.bjsxt.model.Brand;
-import com.bjsxt.model.Cell;
-import com.bjsxt.model.Layer;
+import com.org.config.LayerBuilder;
+import com.org.model.Brand;
+import com.org.model.Cell;
+import com.org.model.Layer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class TestRenderLayer extends JFrame {
     private Integer  height =800;
 
 
-    private Layer layer = TestLayer.buildLayer(3,3);
+    private Layer layer = LayerBuilder.buildLayer(3,3);
 
 
     public TestRenderLayer() throws HeadlessException, InterruptedException, InvocationTargetException {

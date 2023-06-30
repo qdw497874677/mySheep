@@ -1,6 +1,5 @@
-package com.bjsxt.model;
+package com.org.model;
 
-import com.bjsxt.util.ImageUtil;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 

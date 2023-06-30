@@ -1,4 +1,4 @@
-package com.bjsxt.model;
+package com.org.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,34 +81,13 @@ public class Map {
                     // 单元格当中有牌 才进行置灰判定
                     Brand brand = cell.getBrand();
                     // 和上层的所有牌进行 交集判定
-                   boolean flag = this.brand2layer(brand, layer.getParentLayer());
-                    brand.setGray(flag);
+                    boolean cover = brand.brand2layer(layer.getParentLayer());
+                    brand.setGray(cover);
                 }
             }
         }
     }
 
-    private boolean brand2layer(Brand brand, Layer layer) {
-        for (int j = 0; j < layer.getCapacity(); j++) {
-            Cell cell = layer.getIndex(j);
-            if(cell.getState() == 2) {
-                Brand temp = cell.getBrand();
-                boolean flag = brand.getBounds().intersects(temp.getBounds());
-                if (flag) {
-                    // 说明被遮盖了。  只要有一个元素相交就是被遮盖啦。
-                    return flag;
-                }
-            }
-        }
 
-        // 当整个for循环都结束。 说明 当前的牌和 上层的图层没有相交
-        //  应该和 上层图层的 上层图层继续 比较
-        if(layer.getParentLayer() == null) {
-            // 说明没有上层图层啦， 都比较完毕啦。  没有被遮盖
-            return false;
-        }else{
-            return brand2layer(brand, layer.getParentLayer());
-        }
-    }
 
 }

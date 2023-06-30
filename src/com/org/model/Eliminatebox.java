@@ -1,4 +1,4 @@
-package com.bjsxt.model;
+package com.org.model;
 
 import javax.swing.*;
 import java.awt.event.MouseListener;

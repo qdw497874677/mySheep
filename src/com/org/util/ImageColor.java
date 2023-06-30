@@ -1,12 +1,14 @@
-package com.bjsxt.util;
+package com.org.util;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * @author quandawei
+ */
 public class ImageColor {
 
 
@@ -16,7 +18,7 @@ public class ImageColor {
      * @param  fileUrl 输出图片路径
      * @throws
      */
-    public static void inverse(String imgPath, String fileUrl){
+    public static void inverse(String imgPath, String fileUrl) {
         try {
             FileInputStream fileInputStream = new FileInputStream(imgPath);
             BufferedImage image = ImageIO.read(fileInputStream);
@@ -32,16 +34,17 @@ public class ImageColor {
                     int G = (rgb & 0x00ff00) >> 8;
                     int B = rgb & 0x0000ff;
 
-                    int gray = (int)(R * 0.299 + G * 0.587 + B * 0.114);
+                    int gray = (int) (R * 0.299 + G * 0.587 + B * 0.114);
 
 //                    int newPixel=colorToRGB(255-R,255-G,255-B);
-                    int newPixel=colorToRGB(gray,gray,gray);
+                    int newPixel = colorToRGB(gray, gray, gray);
 
 
-                    imageBuffer.setRGB(x,y,newPixel);
+                    imageBuffer.setRGB(x, y, newPixel);
                 }
             }
-            ImageIO.write(imageBuffer, "png", new File(fileUrl)); //输出图片
+            // 输出图片
+            ImageIO.write(imageBuffer, "png", new File(fileUrl));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,15 +54,15 @@ public class ImageColor {
      * @Description: 颜色转rgb值
      * @throws
      */
-    public static int colorToRGB(int red,int green,int blue){
-        int newPixel=0;
-        newPixel=newPixel << 8;
-        newPixel+=red;
-        newPixel=newPixel << 8;
-        newPixel+=green;
-        newPixel=newPixel << 8;
-        newPixel+=blue;
-        return  newPixel;
+    public static int colorToRGB(int red, int green, int blue) {
+        int newPixel = 0;
+        newPixel = newPixel << 8;
+        newPixel += red;
+        newPixel = newPixel << 8;
+        newPixel += green;
+        newPixel = newPixel << 8;
+        newPixel += blue;
+        return newPixel;
 
     }
 

@@ -1,4 +1,4 @@
-package com.bjsxt.model;
+package com.org.model;
 
 
 /**

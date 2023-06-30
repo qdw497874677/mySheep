@@ -1,13 +1,13 @@
-package com.bjsxt;
+package com.org;
 
 
-import com.bjsxt.model.Brand;
-import com.bjsxt.model.Cell;
-import com.bjsxt.model.Layer;
-import com.bjsxt.model.Map;
-import com.bjsxt.model.Music;
+import com.org.model.Brand;
+import com.org.model.Cell;
+import com.org.model.Layer;
+import com.org.model.Map;
+import com.org.model.Music;
 import javazoom.jl.decoder.JavaLayerException;
-import test.TestMap;
+import com.org.config.MapBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +20,12 @@ import java.util.List;
 public class Start extends JFrame {
 
 
-    private Integer  width = 450;
-    private Integer  height =800;
+    private Integer width = 450;
+    private Integer height = 800;
 
-    public  static  Map map = TestMap.buildMap();
+    public static Map map = MapBuilder.buildMap();
 
-    private Brand bj =new Brand("背景草地");
+    private Brand bj = new Brand("背景草地");
     private Brand xc = new Brand("消除区域");
 
     public Start() throws HeadlessException {
@@ -33,7 +33,7 @@ public class Start extends JFrame {
         init();
         // 渲染map
         renderMap();
-        //消除区域和选择区域背景绘制
+        // 消除区域和选择区域背景绘制
         xc.setBounds(0,575,450,800);
         this.getContentPane().add(xc);
         bj.setBounds(0,0,450,800);
@@ -41,23 +41,22 @@ public class Start extends JFrame {
         refresh();
         try {
             new Music();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (JavaLayerException e) {
+        } catch (FileNotFoundException | JavaLayerException e) {
             e.printStackTrace();
         }
     }
 
-    //窗口绘制
-    public  void init(){
+
+    /**
+     * 窗口绘制
+     */
+    public void init(){
         this.setVisible(true);
-        this.setSize(width,height);
+        this.setSize(width, height);
         this.setTitle("羊了个羊");
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.setLayout(null);
-        this.setBounds(0,0,450,800);
+        this.setBounds(0, 0, 450, 800);
         this.setLocationRelativeTo(null);
     }
 
@@ -66,8 +65,8 @@ public class Start extends JFrame {
      */
     public void renderMap(){
         List<Layer> list = map.getLayers();
-        for (int i = 0; i < list.size(); i++) {
-            renderLayer(this.getContentPane(), list.get(i));
+        for (Layer layer : list) {
+            renderLayer(this.getContentPane(), layer);
         }
         // 置灰判定
         map.grayDecide();

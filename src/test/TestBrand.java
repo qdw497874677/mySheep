@@ -1,7 +1,7 @@
 package test;
 
-import com.bjsxt.model.Brand;
-import com.bjsxt.model.Music;
+import com.org.model.Brand;
+import com.org.model.Music;
 import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.*;

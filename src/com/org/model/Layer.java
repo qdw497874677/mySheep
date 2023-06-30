@@ -1,4 +1,4 @@
-package com.bjsxt.model;
+package com.org.model;
 
 import java.util.Random;
 
@@ -7,6 +7,7 @@ import java.util.Random;
  *     1   某个图层的左上角位置  是有一定的偏移量的, 偏移的数值是随机的. 这样可以形成堆叠,并且露出部分下层图案的效果.
  *     2   吐过没有 一定的偏移, 那么就是完全盖住了下层的 组件.
  *     3
+ * @author quandawei
  */
 public class Layer {
 
@@ -57,11 +58,11 @@ public class Layer {
         this.cellNumx = cellNumx;
         this.cellNumy = cellNumy;
 
-        this.capacity = this.cellNumx*this.cellNumy;
-        this.cells =new Cell[cellNumx][cellNumy];
+        this.capacity = this.cellNumx * this.cellNumy;
+        this.cells = new Cell[cellNumx][cellNumy];
 
         // 偏移量设置
-        this.offset= new Random().nextInt(100);
+        this.offset = new Random().nextInt(100);
 
     }
 
