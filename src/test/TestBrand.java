@@ -123,8 +123,8 @@ public class TestBrand extends JFrame{
 
 
 
-    public static void main(String[] args) {
-        new TestBrand();
-    }
+//    public static void main(String[] args) {
+//        new TestBrand();
+//    }
 
 }
